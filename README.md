@@ -1,4 +1,4 @@
-# sars-cov-2-editing
+# SARS-COV-2 RNA editing
 <b>A-to-I RNA editing in SARS-COV-2</b>
 
 <p>RNA editing by adenosine deamination is a key molecular mechanism to modulate the innate immune response. During the course of a viral infection, it can have antiviral effects by destabilizing double stranded RNAs (dsRNAs) or proviral effects by suppressing the immune response.<br>
