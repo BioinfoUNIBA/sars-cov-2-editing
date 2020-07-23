@@ -258,3 +258,11 @@ AC	AG	AT	CA	CG	CT	GA	GC	GT	TA	TC	TG
 1.41843971631	10.9929078014	2.65957446809	0.886524822695	0.354609929078	41.6666666667	2.48226950355	2.48226950355	4.0780141844	3.72340425532	25.3546099291	3.90070921986
 </pre>
 </div>
+
+<br><br>
+<div class="section" id="contact">
+<b>Contact</b>
+<ul class="simple">
+<li><strong>Ernesto Picardi</strong>: ernesto.picardi@gmail.com</li>
+</ul>
+</div>
