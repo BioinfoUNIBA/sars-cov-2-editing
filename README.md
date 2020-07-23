@@ -7,7 +7,7 @@ Here we provide the computational workflow to detect A-to-I RNA editing in the S
 <ul>
 <li><b>Software</b></li>
 <ul>
-<li>FASTP for read trimming</li>
+<li><a href="https://github.com/OpenGene/fastp">FASTP</a> for read trimming</li>
 <li>BWA for read mapping</li>
 <li>GSNAP for read mapping</li>
 <li>sambamba for filtering of SAM/BAM files</li>
