@@ -8,22 +8,22 @@ Here we provide the computational workflow to detect A-to-I RNA editing in the S
 <li><b>Software</b></li>
 <ul>
 <li><a href="https://github.com/OpenGene/fastp">FASTP</a> for read trimming</li>
-<li>BWA for read mapping</li>
-<li>GSNAP for read mapping</li>
-<li>sambamba for filtering of SAM/BAM files</li>
-<li>SAMtools for manipulating BAM files</li>
-<li>REDItools v2 for RNA editing calling</li>
-<li>bam2fastq to estract reads from BAM files</li>
-<li>python 2.x to run scripts and the following mandatory modules:</li>
+<li><a href="http://bio-bwa.sourceforge.net/">BWA</a> for read mapping</li>
+<li><a href="http://research-pub.gene.com/gmap/">GSNAP</a> for read mapping</li>
+<li><a href="https://lomereiter.github.io/sambamba/">sambamba</a> for filtering of SAM/BAM files</li>
+<li><a href="http://www.htslib.org/">SAMtools</a> for manipulating BAM files</li>
+<li><a href="https://github.com/BioinfoUNIBA/REDItools">REDItools v2</a> for RNA editing calling</li>
+<li><a href="https://gsl.hudsonalpha.org/information/software/bam2fastq">bam2fastq</a> to estract reads from BAM files</li>
+<li><a href="https://www.python.org/downloads/source/">python 2.x</a> to run scripts and the following mandatory modules:</li>
   <ul>
-    <li>Pysam</li>
+    <li><a href="https://pysam.readthedocs.io/en/latest/api.html">Pysam</a></li>
   </ul>
 </ul>
 <li><b>Genomic Data</b></li>
 <ul>
-<li>SARS-COV-2 genome (NC045512.2)</li>
-<li>Human Genome hg19</li>
-<li>Reads from PRJNA625518 BioProject - RNAseq from infected Calu-3 cells (only paired end runs):</li>
+<li>SARS-COV-2 genome (<a href="https://www.ncbi.nlm.nih.gov/nuccore/NC_045512.2">NC045512.2</a>)</li>
+<li>Human Genome <a href="http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz">hg19</a></li>
+<li>Reads from <a href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA625518">PRJNA625518</a> BioProject - RNAseq from infected Calu-3 cells (only paired end runs):</li>
 <ul>
 <li>4 hours post infection: SRR11550047 - SRR11550048</li>
 <li>12 hours post infection: SRR11550043 - SRR11550044</li>
@@ -41,7 +41,7 @@ cd PRJNA625518
 mkdir SRR11550046 # repeat for all runs
 </pre>
 </div>
-<p>The folder structure shoudl be:</p>
+<p>The folder structure should be:</p>
   <ul>
     <li>PRJNA625518</li>
     <ul>
