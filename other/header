@@ -1,0 +1,3 @@
+@HD	VN:1.6	SO:coordinate
+@SQ	SN:NC_045512.2	LN:29903
+@PG	ID:bwa	PN:bwa	VN:0.7.17-r1198-dirty	CL:/opt/exp_soft/biomed/epicardi/bwa/bwa mem -t 4 /lustrehome/epicardi/home/covid/hyper_editing_scripts/covidgenome/hg19covid.fa SRR11454613_1_trim.fastq.gz SRR11454613_2_trim.fastq.gz
