@@ -85,7 +85,7 @@ mv SRR11550046.bam SRR11550046.bwa.bam
 mv SRR11550046.bam.bai SRR11550046.bwa.bam.bai
 </pre>
 </div>
-<p>Detect hyper-edited reads</p>
+<p><b>Detect hyper-edited reads</b></p>
 <div class="highlight-python">
 <pre>
 # use the script SubstitutionsPerSequence.py. It takes 3 parameters:
@@ -97,14 +97,14 @@ python SubstitutionsPerSequence.py SRR11550046.bwa.bam 2 n
 </div>
 <p>SubstitutionsPerSequence.py generates 6 output files:</p>
 <ul>
-<li>SRR11550046.bwa.Badreads with a list of low quality reads</li>
+<li>.bwa.Badreads with a list of low quality reads</li>
 <li>SRR11550046.bwa.context with a list of nucleotides surrounding the editing sites to calculate the sequence context</li>
 <div class="highlight-python">
 <pre>
 #Example of the content
 # column 1: genomic position
 # column 2: editing type
-# column 3: sequence context. In the middle the edited base.
+# column 3: sequence context.SRR11550046 In the middle the edited base.
 3430 AG CAG
 3440 AG TAA
 3441 AG AAT
@@ -187,6 +187,74 @@ T_up 0.231707
 </pre>
 </div> 
 </ul>
-/opt/exp_soft/biomed/epicardi/python/bin/python /lustrehome/epicardi/home/covid/runREDItools.py Vero_SCV2-0.bam
-
-
+<p><b>Profiling of RNA editing at single nucleotide level</b></p>
+<p>Run REDItools v2</p>
+<div class="highlight-python">
+<pre>
+reditools.py -r NC045512.fa -o SRR11550046.edi -f SRR11550046.bam -m myhomo -os 4 -q 30 -bq 30 -l 0 -s 2
+</pre>
+</div>
+<p>Compare BWA and GSNAP alignments</p>
+<div class="highlight-python">
+<pre>
+# run SubstitutionsPerSequence.py on gsnap BAM file
+python SubstitutionsPerSequence.py SRR11550046.gsnap.bam 2 n
+# compare aligned reads by CompareReads.py. It takes as input:
+# BWA.reads file 
+# GSNAP.reads file
+# prefix for output files
+python CompareReads.py SRR11550046.bwa.bam SRR11550046.gsnap.bam Comparison
+</pre>
+</div>
+<p>CompareReads.py outputs 2 files:</p>
+<ul>
+<li>Comparison.badPos with a list of positions to exclude</li>
+<li>Comparison.badReads with a list of reads to exclude</li>
+</ul>
+<p>Correct variants detected by REDItools</p>
+<div class="highlight-python">
+<pre>
+# run corr.py. It takes as input:
+# BAM file from bwa
+# reditools output file to correct
+# reference fasta file of viral genome
+# strand info 1: FR Second Strand 2: FR First Strand 0: Unstranded
+# file with positions to exclude (.badPos file)
+# file with reads to exclude (.badReads file). Multiple files can be passed, separated by commas
+# it requires also the list of known variants - knownVariants.txt - (modify its path inside the script)
+python corr.py SRR11550046.bwa.bam SRR11550046.edi NC045512.fa 2 Comparison.badPos Comparison.badReads,SRR11550046.bwa.Badreads,SRR11550046.gsnap.Badreads
+</pre>
+</div>
+<p>corr.py outputs 1 file:</p>
+<ul>
+<li>SRR11550046.corr.edi with a list of corrected positions using the REDItools output format</li>
+<div class="highlight-python">
+<pre>
+# Example from the content
+NC_045512.2	48	C	1	20465	37.71	[0, 20460, 0, 5]	CT	0.000244319569998	-	-	-	-	-
+NC_045512.2	50	C	1	22437	37.60	[0, 22430, 0, 7]	CT	0.000311984668182	-	-	-	-	-
+NC_045512.2	53	G	1	26391	39.10	[6, 0, 26383, 2]	GA	0.000227367463716	-	-	-	-	-
+NC_045512.2	56	G	1	27791	39.07	[1, 0, 27786, 4]	GT	0.000143936667866	-	-	-	-	-
+NC_045512.2	59	C	1	26491	37.73	[1, 26485, 1, 4]	CT	0.000151006077995	-	-	-	-	-
+</pre>
+</div> 
+</ul>
+<p>Select RNA editing positions using the selectPositions.py script from the REDItools package.</p>
+<div class="highlight-python">
+<pre>
+# select positions using as minimal allele frequency two times the error rate from read overlap
+# Error Rate: 0.000189 - Cut-off value: 0.000378
+selectPositions.py -i SRR11550046.corr.edi -c 20 -v 4 -f 0.000378 -o SRR11550046.corr.sel.err.edi
+# Calculate the distribution of detected variants
+python subCount2.py SRR11550046.corr.sel.err.edi > SRR11550046.corr.sel.err.edi.distro
+# Example of the content
+# Row 1: variant types
+# Row 2: number of detected variants per type
+# Row 3: total number of detected variants
+# Row 4: Occurrence of each variant type (in %)
+AC	AG	AT	CA	CG	CT	GA	GC	GT	TA	TC	TG
+8	62	15	5	2	235	14	14	23	21	143	22
+564	564	564	564	564	564	564	564	564	564	564	564
+1.41843971631	10.9929078014	2.65957446809	0.886524822695	0.354609929078	41.6666666667	2.48226950355	2.48226950355	4.0780141844	3.72340425532	25.3546099291	3.90070921986
+</pre>
+</div>
