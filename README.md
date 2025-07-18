@@ -264,3 +264,19 @@ AC	AG	AT	CA	CG	CT	GA	GC	GT	TA	TC	TG
 <li>Ernesto Picardi: ernesto.picardi@gmail.com</li>
 </ul>
 </div>
+
+<br><br><br><br><br>
+Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
+
+This work is licensed under a
+[Creative Commons Attribution-NonCommercial 4.0 International License][cc-by-nc].
+
+[![CC BY-NC 4.0][cc-by-nc-image]][cc-by-nc]
+
+[cc-by-nc]: https://creativecommons.org/licenses/by-nc/4.0/
+[cc-by-nc-image]: https://licensebuttons.net/l/by-nc/4.0/88x31.png
+[cc-by-nc-shield]: https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg
+
+
+This work is licensed under the Creative Commons Attribution - Non-Commercial 4.0 International License (CC BY-NC 4.0).
+For any commercial use or license request for market activities, interested parties are invited to contact the Technology Transfer Office (TTO) of the University of Bari Aldo Moro, copyright holder. For a copy of the license, please visit https://creativecommons.org/licenses/by-nc/4.0/
